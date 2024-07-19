@@ -44,3 +44,7 @@ Run: `"/Users/drew/Library/Arduino15/packages/MiniCore/tools/avrdude/7.2-arduino
 2. `Sketch -> Upload Using Programming`
 
 3. This will fail. So copy the command and append `-F` to the end. It will look something like: `"/Users/drew/Library/Arduino15/packages/MiniCore/tools/avrdude/7.2-arduino.1/bin/avrdude" "-C/Users/drew/Library/Arduino15/packages/MiniCore/hardware/avr/3.0.2/avrdude.conf" -v -V -patmega328 -cstk500v1 -P/dev/cu.usbmodem212101 -b19200 "-Ueeprom:w:/private/var/folders/1v/6223zx0x1wq5d2rh31yd8n1r0000gn/T/arduino/sketches/B3DFF97B33CA8B957F9F4892374529CF/sketch_jul17b.ino.eep:i" "-Uflash:w:/private/var/folders/1v/6223zx0x1wq5d2rh31yd8n1r0000gn/T/arduino/sketches/B3DFF97B33CA8B957F9F4892374529CF/sketch_jul17b.ino.hex:i" -F`
+
+# Reference
+
+https://blog.drewrodrigues.com/articles/2024-07-19-burning-a-bootloader-on-atmega328p-pu-without-a-crystal-on-arduino-uno-r3
