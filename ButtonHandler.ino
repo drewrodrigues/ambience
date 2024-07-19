@@ -9,8 +9,7 @@ ButtonType needButtonRelease = ButtonType::None;
 
 // ? we can create a class or a struct instead? This can be much easier
 
-// int buttons[3] = {ButtonType::Solid, ButtonType::Gradient, ButtonType::Program};
-int buttons[1] = {ButtonType::Solid};
+int buttons[3] = {ButtonType::Solid, ButtonType::Gradient, ButtonType::Program};
 
 void buttonHandlerSetup()
 {
