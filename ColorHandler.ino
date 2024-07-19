@@ -14,33 +14,15 @@ void colorHandlerSetup()
   FastLED.clear();
 }
 
-// TODO: enable more than 2 soon
+// TODO: enable more than 2?
 HexRange gradients[][2] = {
     {HexRange(0x7100FF, 0, 10), HexRange(0xFBB040, 10, NUM_LEDS)},
     {HexRange(0xEF4136, 0, 10), HexRange(0xFBB040, 10, NUM_LEDS)},
-    {HexRange(0xE33C40, 0, 10), HexRange(0x9937C8, 10, NUM_LEDS)}};
-
-// struct Gradient
-// {
-//   int Sunrise_Two[2] = {0xFFEC00, 0xFF100A};
-//   // int BlueGreen[2] = {0x00A1FF, 0x00FF8F};
-//   int OrangePurple[2] = {0xE33C40, 0x9937C8};
-//   int Green[2] = {0x009124, 0x01FF3E};
-//   // ❤️ TequilaSunrise: [0-6], [7, 17], [18, 21]
-//   int TequilaSunrise[3] = {0xFFEC00, 0xFF100A, 0x600169};
-//   /*
-//     Some colors are overwhelming so we have to change the start and end
-//     so colors don't get washed out.
-
-//     Color: <hex>
-//     Start: <integer>
-//     EndInclusive: <integer>
-//   */
-//   // [0-13], [13-22]
-//   // TODO: in a follow up, we can do the above
-
-//   int ClearSky[2] = {0x06EFFC, 0x071184};
-// };
+    {HexRange(0xE33C40, 0, 10), HexRange(0x9937C8, 10, NUM_LEDS)},    // orange purple
+    {HexRange(0xFFEC00, 0, 10), HexRange(0xFF100A, 10, NUM_LEDS)},    // part of tequila sunrise
+    {HexRange(0x06EFFC, 0, 10), HexRange(0x071184, 10, NUM_LEDS)},    // clear sky
+    {HexRange(CRGB::Red, 0, 10), HexRange(CRGB::Blue, 10, NUM_LEDS)}, // red -> blue
+    {HexRange(0x009124, 0, 10), HexRange(0x01FF3E, 10, NUM_LEDS)}};   // green
 
 CRGB colors[] = {
     CRGB::Amethyst, // No
