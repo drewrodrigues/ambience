@@ -27,5 +27,8 @@ void setup()
 void loop()
 {
   ButtonType buttonState = getButtonState();
-  onNextColor(buttonState);
+  if (buttonState != ButtonType::None)
+  {
+    onNextColor(buttonState);
+  }
 }
