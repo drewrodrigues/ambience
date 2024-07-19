@@ -18,9 +18,9 @@ void colorHandlerSetup()
 
 // TODO: enable more than 2 soon
 HexRange gradients[][2] = {
-    {HexRange(0x7100FF, 0, 10), HexRange(0xFBB040, 10, 22)},
-    {HexRange(0xEF4136, 0, 10), HexRange(0xFBB040, 10, 22)},
-    {HexRange(0xE33C40, 0, 10), HexRange(0x9937C8, 10, 22)}};
+    {HexRange(0x7100FF, 0, 10), HexRange(0xFBB040, 10, NUM_LEDS)},
+    {HexRange(0xEF4136, 0, 10), HexRange(0xFBB040, 10, NUM_LEDS)},
+    {HexRange(0xE33C40, 0, 10), HexRange(0x9937C8, 10, NUM_LEDS)}};
 
 // gradients = {{0x7100FF, [0, 5]}, {0xEF4136, 5, 12}}
 
