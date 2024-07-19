@@ -1,8 +1,8 @@
 #include "types.h"
 
 /*
-  MC: ATMega328
-  LED: WS2812
+  MC: ATMega328P-PU
+  LED: WS2812 (what density?)
   3 Buttons: Solid | Gradient | Program
 */
 
