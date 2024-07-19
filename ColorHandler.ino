@@ -16,10 +16,18 @@ void colorHandlerSetup()
   FastLED.clear();
 }
 
-// namespace Gradient
+// TODO: enable more than 2 soon
+HexRange gradients[][2] = {
+    {HexRange(0x7100FF, 0, 10), HexRange(0xFBB040, 10, 22)},
+    {HexRange(0xEF4136, 0, 10), HexRange(0xFBB040, 10, 22)},
+    {HexRange(0xE33C40, 0, 10), HexRange(0x9937C8, 10, 22)}};
+
+// gradients = {{0x7100FF, [0, 5]}, {0xEF4136, 5, 12}}
+
+// Facade::Gradient gradients[] = { Facade::Gradient(0x7100FF) };
+
+// struct Gradient
 // {
-//   int Purp[2] = {0x7100FF, 0xE100FF};
-//   int Sunrise[2] = {0xEF4136, 0xFBB040};
 //   int Sunrise_Two[2] = {0xFFEC00, 0xFF100A};
 //   // int BlueGreen[2] = {0x00A1FF, 0x00FF8F};
 //   int OrangePurple[2] = {0xE33C40, 0x9937C8};
@@ -35,12 +43,14 @@ void colorHandlerSetup()
 //     EndInclusive: <integer>
 //   */
 //   // [0-13], [13-22]
+//   // TODO: in a follow up, we can do the above
+
 //   int ClearSky[2] = {0x06EFFC, 0x071184};
 // };
 
 CRGB colors[] = {
     CRGB::Amethyst, // No
-    CRGB::Black,    // Off
+    // CRGB::Black,    // Off
     CRGB::Aqua,
     CRGB::Blue,
     CRGB::BlueViolet,
@@ -104,6 +114,58 @@ CRGB colors[] = {
     // color correction on your LEDs (recommended).
     CRGB::FairyLight};
 
+unsigned int solidColor = 0;
+const unsigned int COLOR_COUNT = sizeof(colors) / sizeof(colors[0]);
+void nextSolid()
+{
+  solidColor = (solidColor + 1) % COLOR_COUNT;
+
+  for (int i = 0; i < NUM_LEDS; i++)
+  {
+    leds[i] = colors[solidColor];
+  }
+
+  FastLED.show();
+}
+
+unsigned int gradientColor = 0;
+const unsigned int GRADIENT_COUNT = sizeof(gradients) / sizeof(gradients[0]);
+void nextGradient()
+{
+  gradientColor = (gradientColor + 1) % GRADIENT_COUNT;
+
+  Serial.println();
+  Serial.println("GradientColor: ");
+  Serial.println(gradientColor);
+  Serial.println("GRADIENT_COUNT: ");
+  Serial.println(GRADIENT_COUNT);
+
+  HexRange currentGradient[2] = gradients[gradientColor];
+
+  for (int i = 0; i < 2; i++)
+  {
+    HexRange hexRange = currentGradient[i];
+
+    // * if we write out of the range, we end up overwriting other memory that's not ours
+    if (hexRange.endRange > NUM_LEDS)
+    {
+      Serial.println("[ERROR]: Hex range upper exclusive ending range is out of range of LEDs.");
+      return;
+    }
+
+    for (int j = hexRange.startRange; j < hexRange.endRange; j++)
+    {
+      leds[j] = hexRange.hexValue;
+    }
+  }
+
+  FastLED.show();
+}
+
+void nextProgram()
+{
+}
+
 void onNextColor(ButtonType buttonType)
 {
   if (buttonType == ButtonType::Solid)
@@ -118,26 +180,4 @@ void onNextColor(ButtonType buttonType)
   {
     nextProgram();
   }
-}
-
-int currentColor = 0;
-const int COLOR_COUNT = sizeof(colors) / sizeof(colors[0]);
-void nextSolid()
-{
-  currentColor = (currentColor + 1) % COLOR_COUNT;
-
-  for (int i = 0; i < NUM_LEDS; i++)
-  {
-    leds[i] = colors[currentColor];
-    // leds[i] = Gradient::Purp::Begin;
-  }
-  FastLED.show();
-}
-
-void nextGradient()
-{
-}
-
-void nextProgram()
-{
 }

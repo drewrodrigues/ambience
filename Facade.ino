@@ -12,6 +12,8 @@ Handle state changes once, instead of continually doing the same thing
 currentState != previousState
   - do changes
 
+
+When gradient button is hit, it looks like the MC is resetting...
 */
 
 void setup()

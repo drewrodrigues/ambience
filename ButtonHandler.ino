@@ -45,7 +45,6 @@ ButtonType getButtonState()
   {
     if (readButtonFromType(buttons[i]) == HIGH)
     {
-      Serial.println("In it");
       needButtonRelease = buttons[i];
       lastButtonPress = millis();
       return buttons[i];
