@@ -4,6 +4,10 @@ Arduino IDE is erroring out on a signature error: `avrdude: device signature = 0
 
 # Hardware
 
+## Specs
+
+- 5V DC power supply
+
 ![](/ATMega328Pinout.png)
 
 ## Burn Bootloader on ATMega328P-U

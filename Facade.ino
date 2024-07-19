@@ -6,6 +6,14 @@
   3 Buttons: Solid | Gradient | Program
 */
 
+/*
+
+Handle state changes once, instead of continually doing the same thing
+currentState != previousState
+  - do changes
+
+*/
+
 void setup()
 {
   Serial.begin(9600);

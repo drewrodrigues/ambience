@@ -4,7 +4,13 @@
 
 unsigned long lastButtonPress = millis();
 unsigned long debounceDurationMs = 100;
-unsigned long currentTime = millis();
+// To require button to come up before continuing processing
+ButtonType needButtonRelease = ButtonType::None;
+
+// ? we can create a class or a struct instead? This can be much easier
+
+// int buttons[3] = {ButtonType::Solid, ButtonType::Gradient, ButtonType::Program};
+int buttons[1] = {ButtonType::Solid};
 
 void buttonHandlerSetup()
 {
@@ -15,29 +21,55 @@ void buttonHandlerSetup()
 
 ButtonType getButtonState()
 {
-  // currentTime = millis();
-  // bool debouncePassed = lastButtonPress + debounceDurationMs > currentTime;
-  // if (!debouncePassed)
-  // {
-  //   // need to wait longer until processing further / reading
-  //   return ButtonType::None;
-  // }
+  bool debouncePassed = millis() - lastButtonPress >= debounceDurationMs;
+  if (!debouncePassed)
+  {
+    // need to wait longer until processing further / reading
+    return ButtonType::None;
+  }
 
-  // bool solidButtonState = digitalRead(SOLID_BUTTON_PIN);
-  // if (solidButtonState == HIGH)
-  // {
-  //   return ButtonType::Solid;
-  // }
+  if (needButtonRelease != ButtonType::None)
+  {
+    if (readButtonFromType(needButtonRelease) == LOW)
+    {
+      needButtonRelease = ButtonType::None;
+    }
+    else
+    {
+      // Need to wait for button release. Otherwise,
+      // we won't allow anything.
+      return ButtonType::None;
+    }
+  }
 
-  // bool gradientButtonState = digitalRead(GRADIENT_BUTTON_PIN);
-  // if (gradientButtonState == HIGH)
-  // {
-  //   return ButtonType::Gradient;
-  // }
+  for (int i = 0; i < sizeof(buttons) / sizeof(buttons[0]); i++)
+  {
+    if (readButtonFromType(buttons[i]) == HIGH)
+    {
+      Serial.println("In it");
+      needButtonRelease = buttons[i];
+      lastButtonPress = millis();
+      return buttons[i];
+    }
+  }
+}
 
-  // bool programButtonState = digitalRead(PROGRAM_BUTTON_PIN);
-  // if (programButtonState == HIGH)
-  // {
-  //   return ButtonType::Program
-  // }
+int readButtonFromType(ButtonType buttonType)
+{
+  if (buttonType == ButtonType::Solid)
+  {
+    return digitalRead(SOLID_BUTTON_PIN);
+  }
+  else if (buttonType == ButtonType::Gradient)
+  {
+    return digitalRead(GRADIENT_BUTTON_PIN);
+  }
+  else if (buttonType == ButtonType::Program)
+  {
+    return digitalRead(PROGRAM_BUTTON_PIN);
+  }
+  else
+  {
+    return 0;
+  }
 }

@@ -136,26 +136,6 @@ void nextSolid()
 
 void nextGradient()
 {
-  // for (int i = 7; i < 18; i++) {
-  //   leds[i] = Gradient::TequilaSunrise[1];
-  //   // leds[i] = CRGB::Green;
-  // }
-  // for (int i = 18; i < 22; i++) {
-  // leds[i] = CRGB::Yellow;
-  //   // leds[i] = Gradient::Purp::End;
-  //   leds[i] = Gradient::TequilaSunrise[2];
-  // }
-
-  // for (int i = (0 + step) % 22; i < (0 + step) % 22; i++) {
-  //   leds[i] = Gradient::Green[0];
-  //   // leds[i] = Gradient::Purp::Begin;
-  // }
-  // for (int i = (14 + step) % 22; i < (14 + step) % 22; i++) {
-  //   leds[i] = Gradient::Green[1];
-  // }
-  // for (int i = (18 + step) % 22; i < (22 + step) % 22; i++) {
-  //   leds[i] = Gradient::TequilaSunrise[2];
-  // }
 }
 
 void nextProgram()
