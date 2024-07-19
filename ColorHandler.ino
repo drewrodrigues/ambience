@@ -10,8 +10,6 @@ void colorHandlerSetup()
 {
   pinMode(LED_PIN, OUTPUT);
   FastLED.addLeds<LED_TYPE, LED_PIN, GRB>(leds, NUM_LEDS).setCorrection(TypicalLEDStrip);
-  // FastLED.addLeds<LED_TYPE, LED_PIN, RGB>(leds, NUM_LEDS);
-  // FastLED.addLeds<LED_TYPE, LED_PIN>(leds, NUM_LEDS);
   FastLED.setBrightness(255);
   FastLED.clear();
 }
@@ -21,10 +19,6 @@ HexRange gradients[][2] = {
     {HexRange(0x7100FF, 0, 10), HexRange(0xFBB040, 10, NUM_LEDS)},
     {HexRange(0xEF4136, 0, 10), HexRange(0xFBB040, 10, NUM_LEDS)},
     {HexRange(0xE33C40, 0, 10), HexRange(0x9937C8, 10, NUM_LEDS)}};
-
-// gradients = {{0x7100FF, [0, 5]}, {0xEF4136, 5, 12}}
-
-// Facade::Gradient gradients[] = { Facade::Gradient(0x7100FF) };
 
 // struct Gradient
 // {
@@ -133,12 +127,6 @@ const unsigned int GRADIENT_COUNT = sizeof(gradients) / sizeof(gradients[0]);
 void nextGradient()
 {
   gradientColor = (gradientColor + 1) % GRADIENT_COUNT;
-
-  Serial.println();
-  Serial.println("GradientColor: ");
-  Serial.println(gradientColor);
-  Serial.println("GRADIENT_COUNT: ");
-  Serial.println(GRADIENT_COUNT);
 
   HexRange currentGradient[2] = gradients[gradientColor];
 
