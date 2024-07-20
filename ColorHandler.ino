@@ -2,7 +2,7 @@
 
 #define LED_TYPE WS2812
 #define LED_PIN 8
-#define NUM_LEDS 22
+#define NUM_LEDS 51
 
 CRGB leds[NUM_LEDS];
 
@@ -16,13 +16,13 @@ void colorHandlerSetup()
 
 // TODO: enable more than 2?
 HexRange gradients[][2] = {
-    {HexRange(0x7100FF, 0, 10), HexRange(0xFBB040, 10, NUM_LEDS)},
-    {HexRange(0xEF4136, 0, 10), HexRange(0xFBB040, 10, NUM_LEDS)},
-    {HexRange(0xE33C40, 0, 10), HexRange(0x9937C8, 10, NUM_LEDS)},    // orange purple
-    {HexRange(0xFFEC00, 0, 10), HexRange(0xFF100A, 10, NUM_LEDS)},    // part of tequila sunrise
-    {HexRange(0x06EFFC, 0, 10), HexRange(0x071184, 10, NUM_LEDS)},    // clear sky
-    {HexRange(CRGB::Red, 0, 10), HexRange(CRGB::Blue, 10, NUM_LEDS)}, // red -> blue
-    {HexRange(0x009124, 0, 10), HexRange(0x01FF3E, 10, NUM_LEDS)}};   // green
+    {HexRange(0x7100FF, 0, 25), HexRange(0xFBB040, 25, NUM_LEDS)},
+    {HexRange(0xEF4136, 0, 25), HexRange(0xFBB040, 25, NUM_LEDS)},
+    {HexRange(0xE33C40, 0, 25), HexRange(0x9937C8, 25, NUM_LEDS)},    // orange purple
+    {HexRange(0xFFEC00, 0, 25), HexRange(0xFF100A, 25, NUM_LEDS)},    // part of tequila sunrise
+    {HexRange(0x06EFFC, 0, 25), HexRange(0x071184, 25, NUM_LEDS)},    // clear sky
+    {HexRange(CRGB::Red, 0, 25), HexRange(CRGB::Blue, 25, NUM_LEDS)}, // red -> blue
+    {HexRange(0x009124, 0, 25), HexRange(0x01FF3E, 25, NUM_LEDS)}};   // green
 
 CRGB colors[] = {
     CRGB::Amethyst, // No
