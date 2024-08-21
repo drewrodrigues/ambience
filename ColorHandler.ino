@@ -119,7 +119,6 @@ void nextGradient()
     // * if we write out of the range, we end up overwriting other memory that's not ours
     if (hexRange.endRange > NUM_LEDS)
     {
-      Serial.println("[ERROR]: Hex range upper exclusive ending range is out of range of LEDs.");
       return;
     }
 
@@ -167,7 +166,6 @@ void onNextColor(ButtonType buttonType)
   }
   else if (buttonType == ButtonType::Program)
   {
-    Serial.println("Program button clicked");
     nextProgram();
   }
 }

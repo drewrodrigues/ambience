@@ -23,28 +23,8 @@ ButtonType getButtonState()
   unsigned long timeNow = millis();
   bool debouncePassed = timeNow - lastButtonPressTime >= debounceDurationMs;
 
-  Serial.println();
-  Serial.println();
-
-  Serial.println("getButtonState");
-  Serial.print("timeNow: ");
-  Serial.println(timeNow);
-
-  Serial.print("debouncePassed: ");
-  Serial.println(debouncePassed);
-
-  Serial.print("lastButtonPressTime: ");
-  Serial.println(lastButtonPressTime);
-
-  Serial.print("needButtonRelease: ");
-  Serial.println(needButtonRelease);
-
-  Serial.println();
-  Serial.println();
-
   if (!debouncePassed)
   {
-    Serial.println("debouncing...");
     // need to wait longer until processing further / reading
     return ButtonType::None;
   }
@@ -53,13 +33,11 @@ ButtonType getButtonState()
   {
     if (readButtonFromType(needButtonRelease) == LOW)
     {
-      Serial.println("...button released");
       needButtonRelease = ButtonType::None;
       // return ButtonType::None;
     }
     else
     {
-      Serial.println("waiting for button release...");
       // Need to wait for button release. Otherwise,
       // we won't allow anything.
       return ButtonType::None;
@@ -70,8 +48,6 @@ ButtonType getButtonState()
   {
     if (readButtonFromType(buttons[i]) == HIGH)
     {
-      Serial.print("Found a high button: ");
-      Serial.println(buttons[i]);
       needButtonRelease = buttons[i];
       lastButtonPressTime = millis();
       return buttons[i];
