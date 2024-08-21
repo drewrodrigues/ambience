@@ -1,6 +1,6 @@
-#define SOLID_BUTTON_PIN 1
-#define GRADIENT_BUTTON_PIN 2
-#define PROGRAM_BUTTON_PIN 3
+#define SOLID_BUTTON_PIN 0
+#define GRADIENT_BUTTON_PIN 1
+#define DIMMER_BUTTON_PIN 2
 
 unsigned long lastButtonPressTime = millis();
 unsigned long debounceDurationMs = 100;
@@ -9,13 +9,13 @@ ButtonType needButtonRelease = ButtonType::None;
 
 // ? we can create a class or a struct instead? This can be much easier
 
-int buttons[3] = {ButtonType::Solid, ButtonType::Gradient, ButtonType::Program};
+int buttons[3] = {ButtonType::Solid, ButtonType::Gradient, ButtonType::Dimmer};
 
 void buttonHandlerSetup()
 {
   pinMode(SOLID_BUTTON_PIN, INPUT);
   pinMode(GRADIENT_BUTTON_PIN, INPUT);
-  pinMode(PROGRAM_BUTTON_PIN, INPUT);
+  pinMode(DIMMER_BUTTON_PIN, INPUT);
 }
 
 ButtonType getButtonState()
@@ -68,9 +68,9 @@ int readButtonFromType(ButtonType buttonType)
   {
     return digitalRead(GRADIENT_BUTTON_PIN);
   }
-  else if (buttonType == ButtonType::Program)
+  else if (buttonType == ButtonType::Dimmer)
   {
-    return digitalRead(PROGRAM_BUTTON_PIN);
+    return digitalRead(DIMMER_BUTTON_PIN);
   }
   else
   {

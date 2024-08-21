@@ -1,6 +1,13 @@
 #include "Types.h"
 
 /*
+
+Debugging steps:
+- Hook up buttons
+- When a button is pressed, trigger a LED output (to see if any are being held down?)
+*/
+
+/*
   MC: ATMega328P-PU
   LED: WS2812 (what density?)
   3 Buttons: Solid | Gradient | Program
@@ -17,15 +24,38 @@ currentState != previousState
 void setup()
 {
   Serial.begin(9600);
-  colorHandlerSetup();
+  // colorHandlerSetup();
   buttonHandlerSetup();
+
+  // ! manual testing button circuit on PCB
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
 }
 
 void loop()
 {
+  // ! manual testing button circuit on PCB
   ButtonType buttonState = getButtonState();
-  if (buttonState != ButtonType::None)
+  if (buttonState == ButtonType::Solid)
   {
-    onNextColor(buttonState);
+    digitalWrite(3, HIGH);
   }
+  else if (buttonState == ButtonType::Gradient)
+  {
+    digitalWrite(4, HIGH);
+  }
+  else if (buttonState == ButtonType::Dimmer)
+  {
+    digitalWrite(5, HIGH);
+  }
+
+  delay(500);
+  digitalWrite(3, LOW);
+  digitalWrite(4, LOW);
+  digitalWrite(5, LOW);
+  // if (buttonState != ButtonType::None)
+  // {
+  //   onNextColor(buttonState);
+  // }
 }

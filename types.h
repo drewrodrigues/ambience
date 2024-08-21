@@ -1,9 +1,9 @@
 enum ButtonType
 {
-  Solid,
-  Gradient,
-  Program,
-  None
+  Solid = 0,
+  Gradient = 1,
+  Dimmer = 2,
+  None = 3
 };
 struct HexRange
 {
