@@ -131,27 +131,9 @@ void nextGradient()
   FastLED.show();
 }
 
-unsigned int selectedProgramIdx = 0;
+// unsigned int selectedProgramIdx = 0;
 void nextProgram()
 {
-  // none
-
-  CRGB previousColors[NUM_LEDS] = {};
-  // turn one at a time in a circle
-  for (int i = 0; i < NUM_LEDS; i++)
-  {
-    previousColors[i] = leds[i];
-    leds[i] = CRGB::Black;
-  }
-
-  for (int i = 0; i < NUM_LEDS; i++)
-  {
-    leds[i] = previousColors[i];
-    FastLED.show();
-    FastLED.delay(100);
-    leds[i] = CRGB::Black;
-  }
-  // turn on every other one and then push it forward
 }
 
 void onNextColor(ButtonType buttonType)
