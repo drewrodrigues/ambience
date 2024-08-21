@@ -130,9 +130,14 @@ void nextGradient()
   FastLED.show();
 }
 
-// unsigned int selectedProgramIdx = 0;
-void nextProgram()
+unsigned short int selectedBrightness = 0;
+void nextBrightness()
 {
+  unsigned short int brightnesses[6] = {0, 50, 100, 150, 200, 255};
+  const unsigned int BRIGHTNESS_COUNT = sizeof(brightnesses) / sizeof(brightnesses[0]);
+
+  selectedBrightness = (selectedBrightness + 1) % BRIGHTNESS_COUNT;
+  FastLED.setBrightness(brightnesses[selectedBrightness]);
 }
 
 void onNextColor(ButtonType buttonType)

@@ -58,4 +58,23 @@ void loop()
   // {
   //   onNextColor(buttonState);
   // }
+
+  /*
+  if (buttonState == ButtonType::Solid)
+  {
+    nextSolid();
+  }
+  else if (buttonState == ButtonType::Gradient)
+  {
+    nextGradient();
+  }
+  else if (buttonState == ButtonType::Dimmer)
+  {
+    nextBrightness();
+  }
+  else
+  {
+    // do nothing my guy
+  }
+  */
 }
