@@ -1,6 +1,6 @@
-#define SOLID_BUTTON_PIN 5
-#define GRADIENT_BUTTON_PIN 6
-#define PROGRAM_BUTTON_PIN 7
+#define SOLID_BUTTON_PIN 1
+#define GRADIENT_BUTTON_PIN 2
+#define PROGRAM_BUTTON_PIN 3
 
 unsigned long lastButtonPressTime = millis();
 unsigned long debounceDurationMs = 100;
