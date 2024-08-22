@@ -1,7 +1,7 @@
 #include <FastLED.h>
 
 #define LED_TYPE WS2812
-#define LED_PIN 3
+#define LED_PIN 0
 #define NUM_LEDS 10
 
 CRGB leds[NUM_LEDS];

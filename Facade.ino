@@ -24,36 +24,39 @@ currentState != previousState
 void setup()
 {
   Serial.begin(9600);
-  // colorHandlerSetup();
+  colorHandlerSetup(); // ! only difference
   buttonHandlerSetup();
-
-  // ! manual testing button circuit on PCB
-  pinMode(3, OUTPUT);
-  pinMode(4, OUTPUT);
-  pinMode(5, OUTPUT);
+  pinMode(4, OUTPUT); // just for testing buttons manually
 }
 
+// PIN 4 is OUTPUT LED
 void loop()
 {
   // ! manual testing button circuit on PCB
   ButtonType buttonState = getButtonState();
   if (buttonState == ButtonType::Solid)
   {
-    digitalWrite(3, HIGH);
+    digitalWrite(4, !digitalRead(4));
   }
   else if (buttonState == ButtonType::Gradient)
   {
-    digitalWrite(4, HIGH);
+    digitalWrite(4, !digitalRead(4));
   }
   else if (buttonState == ButtonType::Dimmer)
   {
-    digitalWrite(5, HIGH);
+    digitalWrite(4, !digitalRead(4));
   }
 
-  delay(500);
-  digitalWrite(3, LOW);
-  digitalWrite(4, LOW);
-  digitalWrite(5, LOW);
+  // {
+  //   digitalWrite(4, HIGH);
+  // }
+  // else if (buttonState == ButtonType::Dimmer)
+  // {
+  //   digitalWrite(4, HIGH);
+  // }
+
+  // delay(500);
+  // digitalWrite(4, LOW);
   // if (buttonState != ButtonType::None)
   // {
   //   onNextColor(buttonState);
