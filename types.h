@@ -10,5 +10,6 @@ struct HexRange
   uint32_t hexValue;
   int startRange;
   int endRange;
+  HexRange() : hexValue(0), startRange(0), endRange(0) {}
   HexRange(uint32_t hex, int start, int end) : hexValue(hex), startRange(start), endRange(end) {}
 };

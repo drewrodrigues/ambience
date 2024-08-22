@@ -94,31 +94,29 @@ void nextSolid()
   FastLED.show();
 }
 
-unsigned int gradientColor = 0;
+const HexRange gradients[][2] = {
+    {HexRange(0x7100FF, 0, 5), HexRange(0xFBB040, 5, NUM_LEDS)},
+    {HexRange(0xEF4136, 0, 5), HexRange(0xFBB040, 5, NUM_LEDS)},
+    {HexRange(0xE33C40, 0, 5), HexRange(0x9937C8, 5, NUM_LEDS)},    // orange purple
+    {HexRange(0xFFEC00, 0, 5), HexRange(0xFF100A, 5, NUM_LEDS)},    // part of tequila sunrise
+    {HexRange(0x06EFFC, 0, 5), HexRange(0x071184, 5, NUM_LEDS)},    // clear sky
+    {HexRange(CRGB::Red, 0, 5), HexRange(CRGB::Blue, 5, NUM_LEDS)}, // red -> blue
+    {HexRange(0x009124, 0, 5), HexRange(0x01FF3E, 5, NUM_LEDS)}};   // green
+int gradientColor = 0;
 void nextGradient()
 {
-  HexRange gradients[][2] = {
-      {HexRange(0x7100FF, 0, 5), HexRange(0xFBB040, 5, NUM_LEDS)},
-      {HexRange(0xEF4136, 0, 5), HexRange(0xFBB040, 5, NUM_LEDS)},
-      {HexRange(0xE33C40, 0, 5), HexRange(0x9937C8, 5, NUM_LEDS)},    // orange purple
-      {HexRange(0xFFEC00, 0, 5), HexRange(0xFF100A, 5, NUM_LEDS)},    // part of tequila sunrise
-      {HexRange(0x06EFFC, 0, 5), HexRange(0x071184, 5, NUM_LEDS)},    // clear sky
-      {HexRange(CRGB::Red, 0, 5), HexRange(CRGB::Blue, 5, NUM_LEDS)}, // red -> blue
-      {HexRange(0x009124, 0, 5), HexRange(0x01FF3E, 5, NUM_LEDS)}};   // green
-  const unsigned int GRADIENT_COUNT = sizeof(gradients) / sizeof(gradients[0]);
-
+  const int GRADIENT_COUNT = sizeof(gradients) / sizeof(gradients[0]);
   gradientColor = (gradientColor + 1) % GRADIENT_COUNT;
-
-  HexRange currentGradient[2] = gradients[gradientColor];
 
   for (int i = 0; i < 2; i++)
   {
-    HexRange hexRange = currentGradient[i];
+    HexRange hexRange = gradients[gradientColor][i];
 
     // * if we write out of the range, we end up overwriting other memory that's not ours
-    if (hexRange.endRange > NUM_LEDS)
+    // ! this caused a lot of issues -- it causes everything to lock up (probably nto allowing the counter to increment?)
+    if (hexRange.endRange > NUM_LEDS || hexRange.startRange > NUM_LEDS || hexRange.startRange > hexRange.endRange)
     {
-      return;
+      break;
     }
 
     for (int j = hexRange.startRange; j < hexRange.endRange; j++)

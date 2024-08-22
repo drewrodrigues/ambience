@@ -23,7 +23,7 @@ currentState != previousState
 
 void setup()
 {
-  Serial.begin(9600);
+  // Serial.begin(9600);
   colorHandlerSetup(); // ! only difference
   buttonHandlerSetup();
   pinMode(4, OUTPUT); // just for testing buttons manually
@@ -39,11 +39,11 @@ void loop()
     digitalWrite(4, !digitalRead(4));
     nextSolid();
   }
-  // else if (buttonState == ButtonType::Gradient)
-  // {
-  //   digitalWrite(4, !digitalRead(4));
-  //   nextGradient();
-  // }
+  else if (buttonState == ButtonType::Gradient)
+  {
+    digitalWrite(4, !digitalRead(4));
+    nextGradient();
+  }
   // else if (buttonState == ButtonType::Dimmer)
   // {
   //   digitalWrite(4, !digitalRead(4));
