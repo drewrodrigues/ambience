@@ -37,15 +37,18 @@ void loop()
   if (buttonState == ButtonType::Solid)
   {
     digitalWrite(4, !digitalRead(4));
+    nextSolid();
   }
-  else if (buttonState == ButtonType::Gradient)
-  {
-    digitalWrite(4, !digitalRead(4));
-  }
-  else if (buttonState == ButtonType::Dimmer)
-  {
-    digitalWrite(4, !digitalRead(4));
-  }
+  // else if (buttonState == ButtonType::Gradient)
+  // {
+  //   digitalWrite(4, !digitalRead(4));
+  //   nextGradient();
+  // }
+  // else if (buttonState == ButtonType::Dimmer)
+  // {
+  //   digitalWrite(4, !digitalRead(4));
+  //   nextBrightness();
+  // }
 
   // {
   //   digitalWrite(4, HIGH);

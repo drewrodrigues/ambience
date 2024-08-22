@@ -98,13 +98,13 @@ unsigned int gradientColor = 0;
 void nextGradient()
 {
   HexRange gradients[][2] = {
-      {HexRange(0x7100FF, 0, 25), HexRange(0xFBB040, 25, NUM_LEDS)},
-      {HexRange(0xEF4136, 0, 25), HexRange(0xFBB040, 25, NUM_LEDS)},
-      {HexRange(0xE33C40, 0, 25), HexRange(0x9937C8, 25, NUM_LEDS)},    // orange purple
-      {HexRange(0xFFEC00, 0, 25), HexRange(0xFF100A, 25, NUM_LEDS)},    // part of tequila sunrise
-      {HexRange(0x06EFFC, 0, 25), HexRange(0x071184, 25, NUM_LEDS)},    // clear sky
-      {HexRange(CRGB::Red, 0, 25), HexRange(CRGB::Blue, 25, NUM_LEDS)}, // red -> blue
-      {HexRange(0x009124, 0, 25), HexRange(0x01FF3E, 25, NUM_LEDS)}};   // green
+      {HexRange(0x7100FF, 0, 5), HexRange(0xFBB040, 5, NUM_LEDS)},
+      {HexRange(0xEF4136, 0, 5), HexRange(0xFBB040, 5, NUM_LEDS)},
+      {HexRange(0xE33C40, 0, 5), HexRange(0x9937C8, 5, NUM_LEDS)},    // orange purple
+      {HexRange(0xFFEC00, 0, 5), HexRange(0xFF100A, 5, NUM_LEDS)},    // part of tequila sunrise
+      {HexRange(0x06EFFC, 0, 5), HexRange(0x071184, 5, NUM_LEDS)},    // clear sky
+      {HexRange(CRGB::Red, 0, 5), HexRange(CRGB::Blue, 5, NUM_LEDS)}, // red -> blue
+      {HexRange(0x009124, 0, 5), HexRange(0x01FF3E, 5, NUM_LEDS)}};   // green
   const unsigned int GRADIENT_COUNT = sizeof(gradients) / sizeof(gradients[0]);
 
   gradientColor = (gradientColor + 1) % GRADIENT_COUNT;
@@ -138,20 +138,4 @@ void nextBrightness()
 
   selectedBrightness = (selectedBrightness + 1) % BRIGHTNESS_COUNT;
   FastLED.setBrightness(brightnesses[selectedBrightness]);
-}
-
-void onNextColor(ButtonType buttonType)
-{
-  if (buttonType == ButtonType::Solid)
-  {
-    nextSolid();
-  }
-  // else if (buttonType == ButtonType::Gradient)
-  // {
-  //   nextGradient();
-  // }
-  // else if (buttonType == ButtonType::Dimmer)
-  // {
-  //   nextProgram();
-  // }
 }
