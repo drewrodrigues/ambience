@@ -97,43 +97,47 @@ void nextSolid()
   FastLED.show();
 }
 
+const HexRange gradients[7][2] PROGMEM = {
+      { {0x7100FF, 0, 5},   {0xFBB040, 5, NUM_LEDS}   },
+      { {0xEF4136, 0, 5},   {0xFBB040, 5, NUM_LEDS}   },
+      { {0xE33C40, 0, 5},   {0x9937C8, 5, NUM_LEDS}   },    // orange purple
+      { {0xFFEC00, 0, 5},   {0xFF100A, 5, NUM_LEDS}   },    // part of tequila sunrise
+      { {0x06EFFC, 0, 5},   {0x071184, 5, NUM_LEDS}   },    // clear sky
+      { {CRGB::Red, 0, 5},  {CRGB::Blue, 5, NUM_LEDS} }, // red -> blue
+      { {0x009124, 0, 5},   {0x01FF3E, 5, NUM_LEDS}   }};   // green
+
 byte gradientColor = 0;
 void nextGradient()
 {
   ifOffTurnTofullBrightness();
   // // ! we were getting a dynamic memory overflow when this was loaded into memory
   // // either place it into program storage, or make it global
-  // const HexRange gradients[][2] PROGMEM = {
-  //     {HexRange(0x7100FF, 0, 5), HexRange(0xFBB040, 5, NUM_LEDS)},
-  //     {HexRange(0xEF4136, 0, 5), HexRange(0xFBB040, 5, NUM_LEDS)},
-  //     {HexRange(0xE33C40, 0, 5), HexRange(0x9937C8, 5, NUM_LEDS)},    // orange purple
-  //     {HexRange(0xFFEC00, 0, 5), HexRange(0xFF100A, 5, NUM_LEDS)},    // part of tequila sunrise
-  //     {HexRange(0x06EFFC, 0, 5), HexRange(0x071184, 5, NUM_LEDS)},    // clear sky
-  //     {HexRange(CRGB::Red, 0, 5), HexRange(CRGB::Blue, 5, NUM_LEDS)}, // red -> blue
-  //     {HexRange(0x009124, 0, 5), HexRange(0x01FF3E, 5, NUM_LEDS)}};   // green
-  // const byte GRADIENT_COUNT = sizeof(gradients) / sizeof(gradients[0]);
-  // gradientColor = (gradientColor + 1) % GRADIENT_COUNT;
+  const byte GRADIENT_COUNT = sizeof(gradients) / sizeof(gradients[0]);
+  gradientColor = (gradientColor + 1) % GRADIENT_COUNT;
 
-  // for (byte i = 0; i < 2; i++)
-  // {
-  //   // HexRange hexRange = gradients[gradientColor][i];
-  //   HexRange hexRange;
-  //   memcpy_P(&hexRange, &gradients[gradientColor][i], sizeof(HexRange));
+  for (byte i = 0; i < 2; i++)
+  {
+    // HexRange hexRange = gradients[gradientColor][i];
+    HexRange hexRange;
+    memcpy_P(&hexRange, &gradients[gradientColor][i], sizeof(HexRange));
 
-  //   // * if we write out of the range, we end up overwriting other memory that's not ours
-  //   // ! this caused a lot of issues -- it causes everything to lock up (probably nto allowing the counter to increment?)
-  //   if (hexRange.endRange > NUM_LEDS || hexRange.startRange > NUM_LEDS || hexRange.startRange > hexRange.endRange)
-  //   {
-  //     break;
-  //   }
+    // * if we write out of the range, we end up overwriting other memory that's not ours
+    // ! this caused a lot of issues -- it causes everything to lock up (probably nto allowing the counter to increment?)
+    if (hexRange.endRange > NUM_LEDS || hexRange.startRange > NUM_LEDS || hexRange.startRange > hexRange.endRange)
+    {
+      Serial.println("Oh no");
+      Serial.println("startRange: " + String(hexRange.startRange));
+      Serial.println("endRange: " + String(hexRange.endRange));
+      break;
+    }
 
-  //   for (byte j = hexRange.startRange; j < hexRange.endRange; j++)
-  //   {
-  //     leds[j] = hexRange.hexValue;
-  //   }
-  // }
+    for (byte j = hexRange.startRange; j < hexRange.endRange; j++)
+    {
+      leds[j] = hexRange.hexValue;
+    }
+  }
 
-  // FastLED.show();
+  FastLED.show();
 }
 
 byte selectedBrightness = 3;
