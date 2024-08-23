@@ -12,6 +12,7 @@ void colorHandlerSetup()
   FastLED.addLeds<LED_TYPE, LED_PIN, GRB>(leds, NUM_LEDS).setCorrection(TypicalLEDStrip);
   FastLED.setBrightness(255);
   FastLED.clear();
+  nextSolid();
 }
 
 const CRGB colors[] PROGMEM = {
@@ -79,7 +80,7 @@ const CRGB colors[] PROGMEM = {
     // color correction on your LEDs (recommended).
     CRGB::FairyLight};
 
-byte solidColor = 0;
+byte solidColor = -1; // because of initialization
 void nextSolid()
 {
   const byte COLOR_COUNT = sizeof(colors) / sizeof(colors[0]);
