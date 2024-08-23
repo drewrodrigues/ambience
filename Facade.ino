@@ -23,8 +23,6 @@ currentState != previousState
 
 void setup()
 {
-  Serial.begin(9600);
-  Serial.println("Ambience: 1.0");
   colorHandlerSetup(); // ! only difference
   buttonHandlerSetup();
   pinMode(4, OUTPUT); // just for testing buttons manually

@@ -1,4 +1,5 @@
 #include <FastLED.h>
+#include <avr/pgmspace.h>
 
 #define LED_TYPE WS2812
 #define LED_PIN 0
@@ -149,7 +150,6 @@ void nextBrightness()
   {
     selectedBrightness--;
   }
-  Serial.println(selectedBrightness);
 
   if (prevSelectedBrightness == 2 && goUp)
   {

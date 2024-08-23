@@ -3,9 +3,6 @@ unsigned long debounceDurationMs = 250;
 // To require button to come up before continuing processing
 ButtonType needButtonRelease = ButtonType::None;
 
-// ? we can create a class or a struct instead? This can be much easier
-
-// ! TODO: pull into PROGMEM
 const byte buttons[3] = {ButtonType::Solid, ButtonType::Gradient, ButtonType::Dimmer};
 
 void buttonHandlerSetup()
