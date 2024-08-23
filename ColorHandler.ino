@@ -2,7 +2,7 @@
 
 #define LED_TYPE WS2812
 #define LED_PIN 0
-#define NUM_LEDS 10
+#define NUM_LEDS 11
 
 CRGB leds[NUM_LEDS];
 
@@ -74,10 +74,6 @@ const CRGB colors[] PROGMEM = {
     CRGB::Teal,
     CRGB::White,
     CRGB::Yellow,
-    // LED RGB color that roughly approximates
-    // the color of incandescent fairy lights,
-    // assuming that you're using FastLED
-    // color correction on your LEDs (recommended).
     CRGB::FairyLight};
 
 byte solidColor = -1; // because of initialization
@@ -125,9 +121,6 @@ void nextGradient()
     // ! this caused a lot of issues -- it causes everything to lock up (probably nto allowing the counter to increment?)
     if (hexRange.endRange > NUM_LEDS || hexRange.startRange > NUM_LEDS || hexRange.startRange > hexRange.endRange)
     {
-      Serial.println("Oh no");
-      Serial.println("startRange: " + String(hexRange.startRange));
-      Serial.println("endRange: " + String(hexRange.endRange));
       break;
     }
 

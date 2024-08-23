@@ -33,58 +33,20 @@ void setup()
 // PIN 4 is OUTPUT LED
 void loop()
 {
-  // ! manual testing button circuit on PCB
   ButtonType buttonState = getButtonState();
   if (buttonState == ButtonType::Solid)
   {
-    Serial.println("Clicked solid");
     digitalWrite(4, !digitalRead(4));
     nextSolid();
   }
   else if (buttonState == ButtonType::Gradient)
   {
-    Serial.println("Clicked gradient");
     digitalWrite(4, !digitalRead(4));
     nextGradient();
   }
   else if (buttonState == ButtonType::Dimmer)
   {
-    Serial.println("Clicked dimmer");
     digitalWrite(4, !digitalRead(4));
     nextBrightness();
   }
-
-  // {
-  //   digitalWrite(4, HIGH);
-  // }
-  // else if (buttonState == ButtonType::Dimmer)
-  // {
-  //   digitalWrite(4, HIGH);
-  // }
-
-  // delay(500);
-  // digitalWrite(4, LOW);
-  // if (buttonState != ButtonType::None)
-  // {
-  //   onNextColor(buttonState);
-  // }
-
-  /*
-  if (buttonState == ButtonType::Solid)
-  {
-    nextSolid();
-  }
-  else if (buttonState == ButtonType::Gradient)
-  {
-    nextGradient();
-  }
-  else if (buttonState == ButtonType::Dimmer)
-  {
-    nextBrightness();
-  }
-  else
-  {
-    // do nothing my guy
-  }
-  */
 }
