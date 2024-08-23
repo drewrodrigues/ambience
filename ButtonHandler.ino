@@ -1,5 +1,5 @@
 unsigned long lastButtonPressTime = millis();
-unsigned long debounceDurationMs = 100;
+unsigned long debounceDurationMs = 250;
 // To require button to come up before continuing processing
 ButtonType needButtonRelease = ButtonType::None;
 
