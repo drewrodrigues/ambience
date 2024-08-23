@@ -135,12 +135,26 @@ void nextGradient()
   // FastLED.show();
 }
 
-unsigned short int selectedBrightness = 0;
+byte selectedBrightness = 3;
+bool goUp = false;
 void nextBrightness()
 {
-  unsigned short int brightnesses[6] = {0, 50, 100, 150, 200, 255};
-  const unsigned int BRIGHTNESS_COUNT = sizeof(brightnesses) / sizeof(brightnesses[0]);
+  const byte brightnesses[4] = {0, 50, 150, 255};
+  const byte BRIGHTNESS_COUNT = sizeof(brightnesses) / sizeof(brightnesses[0]);
+  const byte prevSelectedBrightness = selectedBrightness;
 
-  selectedBrightness = (selectedBrightness + 1) % BRIGHTNESS_COUNT;
+  if (goUp) {
+    selectedBrightness++;
+  } else {
+    selectedBrightness--;
+  }
+  Serial.println(selectedBrightness);
+
+  if (prevSelectedBrightness == 2 && goUp) {
+    goUp = false;
+  } else if (prevSelectedBrightness == 1 && !goUp) {
+    goUp = true;
+  }
+
   FastLED.setBrightness(brightnesses[selectedBrightness]);
 }
