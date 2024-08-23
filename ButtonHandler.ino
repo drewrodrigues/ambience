@@ -42,7 +42,7 @@ ButtonType getButtonState()
     }
   }
 
-  for (int i = 0; i < sizeof(buttons) / sizeof(buttons[0]); i++)
+  for (byte i = 0; i < sizeof(buttons) / sizeof(buttons[0]); i++)
   {
     if (digitalRead(buttons[i]) == LOW) // pressed down
     {
