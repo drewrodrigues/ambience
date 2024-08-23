@@ -83,6 +83,7 @@ const CRGB colors[] PROGMEM = {
 byte solidColor = -1; // because of initialization
 void nextSolid()
 {
+  ifOffTurnTofullBrightness();
   const byte COLOR_COUNT = sizeof(colors) / sizeof(colors[0]);
   solidColor = (solidColor + 1) % COLOR_COUNT;
 
@@ -157,4 +158,19 @@ void nextBrightness()
   }
 
   FastLED.setBrightness(brightnesses[selectedBrightness]);
+  FastLED.show();
+}
+
+/*
+  This is so it's not confusing if changing the color when the dimmer is off
+*/
+void ifOffTurnTofullBrightness()
+{
+  if (selectedBrightness == 0)
+  {
+    selectedBrightness = 3;
+    goUp = false;
+    FastLED.setBrightness(255);
+    FastLED.show();
+  }
 }
