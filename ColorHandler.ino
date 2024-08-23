@@ -98,13 +98,13 @@ void nextSolid()
 }
 
 const HexRange gradients[7][2] PROGMEM = {
-      { {0x7100FF, 0, 5},   {0xFBB040, 5, NUM_LEDS}   },
-      { {0xEF4136, 0, 5},   {0xFBB040, 5, NUM_LEDS}   },
-      { {0xE33C40, 0, 5},   {0x9937C8, 5, NUM_LEDS}   },    // orange purple
-      { {0xFFEC00, 0, 5},   {0xFF100A, 5, NUM_LEDS}   },    // part of tequila sunrise
-      { {0x06EFFC, 0, 5},   {0x071184, 5, NUM_LEDS}   },    // clear sky
-      { {CRGB::Red, 0, 5},  {CRGB::Blue, 5, NUM_LEDS} }, // red -> blue
-      { {0x009124, 0, 5},   {0x01FF3E, 5, NUM_LEDS}   }};   // green
+    {{0x7100FF, 0, 5}, {0xFBB040, 5, NUM_LEDS}},
+    {{0xEF4136, 0, 5}, {0xFBB040, 5, NUM_LEDS}},
+    {{0xE33C40, 0, 5}, {0x9937C8, 5, NUM_LEDS}},    // orange purple
+    {{0xFFEC00, 0, 5}, {0xFF100A, 5, NUM_LEDS}},    // part of tequila sunrise
+    {{0x06EFFC, 0, 5}, {0x071184, 5, NUM_LEDS}},    // clear sky
+    {{CRGB::Red, 0, 5}, {CRGB::Blue, 5, NUM_LEDS}}, // red -> blue
+    {{0x009124, 0, 5}, {0x01FF3E, 5, NUM_LEDS}}};   // green
 
 byte gradientColor = 0;
 void nextGradient()
@@ -148,16 +148,22 @@ void nextBrightness()
   const byte BRIGHTNESS_COUNT = sizeof(brightnesses) / sizeof(brightnesses[0]);
   const byte prevSelectedBrightness = selectedBrightness;
 
-  if (goUp) {
+  if (goUp)
+  {
     selectedBrightness++;
-  } else {
+  }
+  else
+  {
     selectedBrightness--;
   }
   Serial.println(selectedBrightness);
 
-  if (prevSelectedBrightness == 2 && goUp) {
+  if (prevSelectedBrightness == 2 && goUp)
+  {
     goUp = false;
-  } else if (prevSelectedBrightness == 1 && !goUp) {
+  }
+  else if (prevSelectedBrightness == 1 && !goUp)
+  {
     goUp = true;
   }
 
