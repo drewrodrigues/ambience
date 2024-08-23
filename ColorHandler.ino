@@ -14,9 +14,8 @@ void colorHandlerSetup()
   FastLED.clear();
 }
 
-CRGB colors[] = {
+const CRGB colors[] PROGMEM = {
     CRGB::Amethyst, // No
-    // CRGB::Black,    // Off
     CRGB::Aqua,
     CRGB::Blue,
     CRGB::BlueViolet,
@@ -80,15 +79,17 @@ CRGB colors[] = {
     // color correction on your LEDs (recommended).
     CRGB::FairyLight};
 
-unsigned int solidColor = 0;
-const unsigned int COLOR_COUNT = sizeof(colors) / sizeof(colors[0]);
+byte solidColor = 0;
 void nextSolid()
 {
+  const byte COLOR_COUNT = sizeof(colors) / sizeof(colors[0]);
   solidColor = (solidColor + 1) % COLOR_COUNT;
 
-  for (int i = 0; i < NUM_LEDS; i++)
+  for (byte i = 0; i < NUM_LEDS; i++)
   {
-    leds[i] = colors[solidColor];
+    CRGB color;
+    memcpy_P(&color, &colors[solidColor], sizeof(CRGB));
+    leds[i] = color;
   }
 
   FastLED.show();
