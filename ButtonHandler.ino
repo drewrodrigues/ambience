@@ -3,7 +3,7 @@ unsigned long debounceDurationMs = 250;
 // To require button to come up before continuing processing
 ButtonType heldDownButton = ButtonType::None;
 
-const byte buttons[3] = {ButtonType::Solid, ButtonType::Gradient, ButtonType::Dimmer};
+const ButtonType buttons[3] = {ButtonType::Solid, ButtonType::Gradient, ButtonType::Dimmer};
 
 void buttonHandlerSetup()
 {
