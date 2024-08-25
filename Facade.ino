@@ -15,6 +15,8 @@
     - Dimmer selection (up/down) for smoother experience
     - Input pullup on buttons to remove pulldown resistors in circuit
     - Solid colors and gradients written/pulled from memory to reduce ram usage
+    - When selecting solid/gradient when dimmer has turned off LEDs, light goes
+      back to full brightness for understandability.
 */
 
 void setup()
