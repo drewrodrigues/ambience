@@ -1,24 +1,9 @@
 #include "Types.h"
 
 /*
-
-Debugging steps:
-- Hook up buttons
-- When a button is pressed, trigger a LED output (to see if any are being held down?)
-*/
-
-/*
   MC: ATMega328P-PU
-  LED: WS2812 (what density?)
-  3 Buttons: Solid | Gradient | Program
-*/
-
-/*
-
-Handle state changes once, instead of continually doing the same thing
-currentState != previousState
-  - do changes
-
+  LED: WS2812B-B/U (has internal decoupling capacitor)
+  3 Buttons: Solid | Gradient | Dimmer
 */
 
 void setup()
