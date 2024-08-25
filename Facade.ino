@@ -4,6 +4,16 @@
   MC: ATMega328P-PU
   LED: WS2812B-B/U (has internal decoupling capacitor)
   3 Buttons: Solid | Gradient | Dimmer
+
+  Features:
+    - Held down buttons continue triggering after debouce duration
+    - When a button is held down, it must be released before other buttons are
+      registered
+    - 3 buttons handled: Solid, Gradient, Dimmer
+    - Solid color selection
+    - Gradient color selection
+    - Dimmer selection (up/down) for smoother experience
+    - Input pullup on buttons to remove pulldown resistors in circuit
 */
 
 void setup()
