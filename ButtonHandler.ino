@@ -1,7 +1,7 @@
 unsigned long lastButtonPressTime = millis();
 unsigned long debounceDurationMs = 250;
 // To require button to come up before continuing processing
-ButtonType needButtonRelease = ButtonType::None;
+ButtonType heldDownButton = ButtonType::None;
 
 const byte buttons[3] = {ButtonType::Solid, ButtonType::Gradient, ButtonType::Dimmer};
 
@@ -21,30 +21,34 @@ ButtonType getButtonState()
 
   if (!debouncePassed)
   {
-    // need to wait longer until processing further / reading
     return ButtonType::None;
   }
 
-  if (needButtonRelease != ButtonType::None)
+  /*
+    Keep track of button up/down state so we can allow button clicks on holding
+    down a button. But not allow other buttons to register while that button
+    is being held down. Once it's released, it's free game.
+  */
+  if (heldDownButton != ButtonType::None)
   {
-    if (digitalRead(needButtonRelease) == HIGH) // released
+    const bool buttonIsReleased = digitalRead(heldDownButton) == HIGH;
+    if (buttonIsReleased)
     {
-      needButtonRelease = ButtonType::None;
-      // return ButtonType::None;
-    }
-    else
-    {
-      // Need to wait for button release. Otherwise,
-      // we won't allow anything.
-      return ButtonType::None;
+      heldDownButton = ButtonType::None;
     }
   }
 
   for (byte i = 0; i < sizeof(buttons) / sizeof(buttons[0]); i++)
   {
-    if (digitalRead(buttons[i]) == LOW) // pressed down
+    // we'll allow further clicks from a held down button, but not allow
+    // other held down buttons to register until the initial one is released
+    if (heldDownButton != ButtonType::None && heldDownButton != buttons[i])
+      continue;
+
+    const bool buttonIsPressed = digitalRead(buttons[i]) == LOW;
+    if (buttonIsPressed)
     {
-      needButtonRelease = buttons[i];
+      heldDownButton = buttons[i];
       lastButtonPressTime = millis();
       return buttons[i];
     }
