@@ -17,6 +17,9 @@
     - Solid colors and gradients written/pulled from memory to reduce ram usage
     - When selecting solid/gradient when dimmer has turned off LEDs, light goes
       back to full brightness for understandability.
+    - When swapping between solid/gradient, selection index resets for users
+      to maintain sequential understanding over color order. This will help them
+      find their favorite colors again quickly.
 */
 
 void setup()
