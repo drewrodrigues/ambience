@@ -23,12 +23,9 @@ currentState != previousState
 
 void setup()
 {
-  colorHandlerSetup(); // ! only difference
+  colorHandlerSetup();
   buttonHandlerSetup();
-  pinMode(4, OUTPUT); // just for testing buttons manually
 }
-
-// PIN 4 is OUTPUT LED
 
 byte lastSelectedButton = ButtonType::None;
 void loop()
