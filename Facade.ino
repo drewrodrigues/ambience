@@ -1,9 +1,12 @@
 #include "Types.h"
 
 /*
+  Product: Ambience
   MC: ATMega328P-PU
   LED: WS2812B-B/U (has internal decoupling capacitor)
   3 Buttons: Solid | Gradient | Dimmer
+  Date: 8/25/2024
+  Author: Drew Rodrigues
 
   Features:
     - Held down buttons continue triggering after debouce duration
