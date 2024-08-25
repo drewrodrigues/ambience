@@ -14,6 +14,7 @@
     - Gradient color selection
     - Dimmer selection (up/down) for smoother experience
     - Input pullup on buttons to remove pulldown resistors in circuit
+    - Solid colors and gradients written/pulled from memory to reduce ram usage
 */
 
 void setup()
