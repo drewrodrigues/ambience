@@ -3,7 +3,7 @@
 
 #define LED_TYPE WS2812
 #define LED_PIN 0
-#define NUM_LEDS 11
+#define NUM_LEDS 24
 
 CRGB leds[NUM_LEDS];
 
