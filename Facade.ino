@@ -1,8 +1,10 @@
+#include <FastLED.h>
+
 #include "Types.h"
 
 /*
   Product: Ambience
-  MC: ATMega328P-PU
+  MC: ATTiny85
   LED: WS2812B-B/U (has internal decoupling capacitor)
   3 Buttons: Solid | Gradient | Dimmer
   Date: 8/25/2024
@@ -27,29 +29,23 @@
 
 void setup()
 {
+  Serial.begin(9600);
   colorHandlerSetup();
   buttonHandlerSetup();
 }
 
-byte lastSelectedButton = ButtonType::None;
 void loop()
 {
+  static byte lastSelectedButton = ButtonType::None;
+
   ButtonType buttonState = getButtonState();
   if (buttonState == ButtonType::Solid)
   {
-    if (lastSelectedButton == ButtonType::Gradient)
-    {
-      resetSolidIndex();
-    }
     lastSelectedButton = buttonState;
     nextSolid();
   }
   else if (buttonState == ButtonType::Gradient)
   {
-    if (lastSelectedButton == ButtonType::Solid)
-    {
-      resetGradientIndex();
-    }
     lastSelectedButton = buttonState;
     nextGradient();
   }

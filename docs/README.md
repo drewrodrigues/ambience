@@ -4,6 +4,12 @@
 
 `Files > Examples > 11.ArduinoISP > ArduinoISP`
 ![](./_ArduinoISP.png)
+![](./_Uno.png)
+![](./_Upload.png)
+
+## Setup Programming Circuit
+
+![](./attiny85_wires_complete.jpg)
 
 ## Install Library & Select Board
 
@@ -40,7 +46,18 @@ Now that the ATTiny85 is in the programming circuit and the Arduino has the `Ard
 
 # Memory
 
-- Flash: Persistant (stores executable sketch, limited writes ~10,000)
-- RAM/SRAM: Variables, stack, etc
-- EEPROM: Persistance storage (limited writes ~10,000)
+- Flash: Persistant (stores executable sketch, limited writes ~10,000) (8KB)
+- RAM/SRAM: Variables, stack, etc (512 Bytes)
+- EEPROM: Persistance storage (limited writes ~10,000) (512 Bytes)
   - Be careful writing to this too often, as it can eventually fail
+
+# Reference
+
+- https://homemadehardware.com/guides/programming-an-attiny85/
+
+# Todo
+
+- [x] Decide on Gradients
+- [x] Decide on Solids
+- [x] Fade between colors for transition
+- [x] Update PCB buttons to be vertical

@@ -11,3 +11,4 @@ struct HexRange
   byte startRange;
   byte endRange;
 };
+
