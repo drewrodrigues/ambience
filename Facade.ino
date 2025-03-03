@@ -27,11 +27,22 @@
       find their favorite colors again quickly.
 */
 
+#define LED_TYPE WS2812
+#define LED_PIN 0
+#define NUM_LEDS 24
+
+CRGB leds[NUM_LEDS];
+
 void setup()
 {
   Serial.begin(9600);
-  colorHandlerSetup();
   buttonHandlerSetup();
+
+  pinMode(LED_PIN, OUTPUT);
+  FastLED.addLeds<LED_TYPE, LED_PIN, GRB>(leds, NUM_LEDS);
+  FastLED.setBrightness(255);
+  FastLED.clear();
+  nextSolid(leds);
 }
 
 void loop()
@@ -42,16 +53,20 @@ void loop()
   if (buttonState == ButtonType::Solid)
   {
     lastSelectedButton = buttonState;
-    nextSolid();
+    nextSolid(leds);
   }
   else if (buttonState == ButtonType::Gradient)
   {
     lastSelectedButton = buttonState;
-    nextGradient();
+    nextAnimation(leds);
   }
   else if (buttonState == ButtonType::Dimmer)
   {
-    digitalWrite(4, !digitalRead(4));
+    digitalWrite(4, !digitalRead(4)); // TODO: @drew -- wtf is this?
     nextBrightness();
+  }
+  else if (lastSelectedButton == ButtonType::Gradient)
+  {
+    animate(leds);
   }
 }
