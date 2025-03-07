@@ -3,7 +3,6 @@
 byte selectedAnimation = 0;
 uint8_t hue = 0;
 uint8_t pos = 0;
-uint8_t sparkleIndex = 0;
 
 void nextAnimation(CRGB* leds)
 {

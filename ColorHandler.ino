@@ -1,14 +1,15 @@
 #include <FastLED.h>
 #include <avr/pgmspace.h>
 
-void nextSolid(CRGB leds)
+void nextSolid(CRGB *leds)
 {
   static unsigned int colorIndex = 0;
   ifOffTurnTofullBrightness();
 
+  CRGB color = getCycledRGB(colorIndex);
   for (byte i = 0; i < NUM_LEDS; i++)
   {
-    // leds[i] = getCycledRGB(colorIndex);
+    leds[i] = color;
   }
   colorIndex += (768 / 40);
 
